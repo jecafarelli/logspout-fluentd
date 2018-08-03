@@ -34,13 +34,13 @@ func (adapter *FluentdAdapter) Stream(logstream chan *router.Message) {
 
 		json, err := json.Marshal(data)
 		if err != nil {
-			log.Println("fluentd-adapter: ", err)
+			log.Println("fluentd-adapter Error on marshal: ", err)
 			continue
 		}
 
 		_, err = adapter.conn.Write(json)
 		if err != nil {
-			log.Println("fluentd-adapter: ", err)
+			log.Println("fluentd-adapter on writing to adapter: ", err)
 			continue
 		}
 	}
